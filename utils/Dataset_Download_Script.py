@@ -3,11 +3,16 @@ import shutil
 import os
 
 # Download dataset
-cache_path = kagglehub.dataset_download(
-    "abhishek14398/salary-dataset-simple-linear-regression" 
-)
+try:
+    # Note: Removed "datasets/" from the path as kagglehub just needs "username/dataset"
+    ds_handle = input("Enter Dataset Handel URL : ") 
+    cache_path = kagglehub.dataset_download(ds_handle)
+    print(f"Success! Dataset downloaded to: {cache_path}")
 
-print("Downloaded to:", cache_path)
+except Exception as error:
+    print("Error While Downloading Dataset !!")
+    print(f"Reason: {error}")
+    exit
 
 # Destination folder
 destination = r"D:\Machine_Learning\Datasets"
